@@ -1,7 +1,7 @@
 `timescale 1ns/10ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company:         Tel Aviv University
-// Engineer:        Saleh Khalil , mahmood stitia
+// Engineer:        
 // 
 // Create Date:     11/12/2018 08:59:38 PM
 // Design Name:     EE3 lab1
@@ -22,13 +22,26 @@
 module Lim_Inc(a, ci, sum, co);
     
     parameter L = 10;
-    parameter N = /* FILL HERE */;
+    localparam N = $clog2(L);
     
     input [N-1:0] a;
     input ci;
     output [N-1:0] sum;
     output co;
+    
+    wire [N-1:0] inc_a;
+    wire csa_co;
 
     // FILL HERE
+    CSA #(.N(N)) csa (
+    .a(a),
+    .b({N{1'b0}}),
+    .ci(ci),
+    .sum(inc_a),
+    .co(csa_co)
+    );
+    
+    assign sum = ({csa_co,inc_a} < L)? inc_a: {N{1'b0}};
+    assign co  = ({csa_co,inc_a} < L)? 1'b0: 1'b1;
     
 endmodule
