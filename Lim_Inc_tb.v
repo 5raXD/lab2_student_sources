@@ -27,7 +27,7 @@ module Lim_Inc_tb();
     integer ai,cii;
     
     // Instantiate the UUT (Unit Under Test)
-    Lim_Inc #(7) uut(
+    Lim_Inc #(10) uut(
     .a(a),
     .ci(ci),
     .sum(sum),
@@ -35,7 +35,7 @@ module Lim_Inc_tb();
     );
     
 	//FILL HERE
-    assign sum[3]   = 1'b0; 
+    //assign sum[3]   = 1'b0; 
     initial begin
         correct = 1;
         loop_was_skipped = 1;
