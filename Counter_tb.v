@@ -28,6 +28,14 @@ module Counter_tb();
     
     // Instantiate the UUT (Unit Under Test)
     // TODO
+    Counter #(.CLK_FREQ(100000000)) uut (
+    .clk          (clk),
+    .init_regs    (init_regs),
+    .count_enabled(count_enabled),
+    .count_sample (count_sample),
+    .show_sample  (show_sample),
+    .time_reading (time_reading)
+);
     
     assign tens_seconds_wire = time_reading[15:12];
     assign ones_seconds_wire = time_reading[11:8];
