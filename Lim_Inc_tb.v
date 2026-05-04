@@ -27,14 +27,35 @@ module Lim_Inc_tb();
     integer ai,cii;
     
     // Instantiate the UUT (Unit Under Test)
+    Lim_Inc #(7) uut(
+    .a(a),
+    .ci(ci),
+    .sum(sum),
+    .co(co)
+    );
     
 	//FILL HERE
-    
+    assign sum[3]   = 1'b0; 
     initial begin
         correct = 1;
         loop_was_skipped = 1;
         #1
         //FILL HERE
+        // a has 4 bits so will test all vlaues from 0 to 15 with both ci = 0 and ci =1
+        for (ai = 0; ai<16; ai=ai+1) begin
+         for (cii = 0; cii<=1; cii=cii+1) begin 
+          a = ai;
+          ci = cii;
+          #5;
+          
+          if (ai >= 7) correct = correct & (sum == 0) & (co == 1);
+          else begin
+           if (ai == 6 )  correct = correct & ( ((sum == 6) & (co == 0) & (cii == 0)) | ((sum == 0) & (co == 1) & (cii == 1)) );
+           else correct = correct & (sum == ai + cii) & (co == 0);
+          end
+        
+         end
+        end
         #5
         if (correct && ~loop_was_skipped)
             $display("Test Passed - %m");
