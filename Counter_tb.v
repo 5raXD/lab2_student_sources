@@ -64,22 +64,22 @@ module Counter_tb();
                         sync = sync | 1;
                         loop_was_skipped = 0;
 
-                        // if (ts==0 && os==0 && tc==5 && oc==0)
-                        //     count_sample = 1;
-                        // else
-                        //     count_sample = 0;
+                         if (ts==0 && os==0 && tc==5 && oc==0)
+                             count_sample = 1;
+                         else
+                             count_sample = 0;
 
-                        // if (ts==0 && os==1 && tc==0 && oc==0) begin
-                        //     show_sample = 1;
-                        //     correct = correct && (tens_seconds_wire      == 0) &&
-                        //                          (ones_seconds_wire      == 0) &&
-                        //                          (tens_centiseconds_wire == 5) &&
-                        //                          (ones_centiseconds_wire == 0);
-                        // end else begin
-                        // show_sample = 0;
+                         if (ts==0 && os==1 && tc==0 && oc==0) begin
+                             show_sample = 1;
+                             correct = correct && (tens_seconds_wire      == 0) &&
+                                                  (ones_seconds_wire      == 0) &&
+                                                  (tens_centiseconds_wire == 5) &&
+                                                  (ones_centiseconds_wire == 0);
+                         end else begin
+                         show_sample = 0;
                         correct = correct && (tens_seconds_wire      == ts) && (ones_seconds_wire      == os) &&
                                              (tens_centiseconds_wire == tc) && (ones_centiseconds_wire == oc);
-                        // end
+                         end
                     end
                 end
            end
