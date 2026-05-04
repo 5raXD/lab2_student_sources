@@ -28,7 +28,7 @@ module Counter_tb();
     
     // Instantiate the UUT (Unit Under Test)
     // TODO
-    Counter #(.CLK_FREQ(100000000)) uut (
+    Counter uut (
     .clk          (clk),
     .init_regs    (init_regs),
     .count_enabled(count_enabled),
