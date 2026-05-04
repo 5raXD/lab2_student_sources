@@ -28,6 +28,14 @@ module Counter_tb();
     
     // Instantiate the UUT (Unit Under Test)
     // TODO
+    Counter uut (
+    .clk          (clk),
+    .init_regs    (init_regs),
+    .count_enabled(count_enabled),
+    .count_sample (count_sample),
+    .show_sample  (show_sample),
+    .time_reading (time_reading)
+);
     
     assign tens_seconds_wire = time_reading[15:12];
     assign ones_seconds_wire = time_reading[11:8];
@@ -51,10 +59,27 @@ module Counter_tb();
         for( ts=0; ts<1; ts=ts+1 ) begin // not more than 1*10 seconds check
             for( os=0; os<2; os=os+1 ) begin // not more than 2*1 seconds check
                 for( tc=0; tc<10; tc=tc+1 ) begin // check 10*0.1 seconds 
-                    for( oc=0; oc<10; oc=oc+1 ) begin  // check 10*0.001 seconds
-                            #(9999999+sync) // FILL HERE THE "correct" signal MAINTENANCE 
-                            sync = sync | 1;
-                            loop_was_skipped = 0;
+                    for( oc=0; oc<10; oc=oc+1 ) begin
+                        #(9999999+sync)
+                        sync = sync | 1;
+                        loop_was_skipped = 0;
+
+                        // if (ts==0 && os==0 && tc==5 && oc==0)
+                        //     count_sample = 1;
+                        // else
+                        //     count_sample = 0;
+
+                        // if (ts==0 && os==1 && tc==0 && oc==0) begin
+                        //     show_sample = 1;
+                        //     correct = correct && (tens_seconds_wire      == 0) &&
+                        //                          (ones_seconds_wire      == 0) &&
+                        //                          (tens_centiseconds_wire == 5) &&
+                        //                          (ones_centiseconds_wire == 0);
+                        // end else begin
+                        // show_sample = 0;
+                        correct = correct && (tens_seconds_wire      == ts) && (ones_seconds_wire      == os) &&
+                                             (tens_centiseconds_wire == tc) && (ones_centiseconds_wire == oc);
+                        // end
                     end
                 end
            end

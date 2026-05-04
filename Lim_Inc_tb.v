@@ -35,7 +35,6 @@ module Lim_Inc_tb();
     );
     
 	//FILL HERE
-    //assign sum[3]   = 1'b0; 
     initial begin
         correct = 1;
         loop_was_skipped = 1;
