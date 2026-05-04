@@ -76,7 +76,7 @@ module Counter_tb();
                         //                          (tens_centiseconds_wire == 5) &&
                         //                          (ones_centiseconds_wire == 0);
                         // end else begin
-                        show_sample = 0;
+                        // show_sample = 0;
                         correct = correct && (tens_seconds_wire      == ts) && (ones_seconds_wire      == os) &&
                                              (tens_centiseconds_wire == tc) && (ones_centiseconds_wire == oc);
                         // end
