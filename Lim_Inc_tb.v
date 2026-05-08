@@ -59,7 +59,7 @@ module Lim_Inc_tb();
            if (ai == L-1)  correct = correct & ( ((sum == ai) & (co == 0) & (cii == 0)) | ((sum == 0) & (co == 1) & (cii == 1)) );
            else correct = correct & (sum == ai + cii) & (co == 0);
           end
-        
+            loop_was_skipped = 0;
          end
         end
         #5
